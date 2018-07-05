@@ -244,41 +244,41 @@
                     </div>
                 </div>
             </div>
-            
+
             <div id="host">
-                <img src="/assets/shape.png" class="shape" alt="Shape" usemap="#image-map">
+                <img src="./assets/shape.png" class="shape" alt="Shape" usemap="#image-map">
 
                 <map name="image-map">
 
                     <area alt="Encrypted Computing" 
                         title="Encrypted Computing" 
                         data-content="Coming soon ..." 
-                    href="#" coords="1132,196,25" shape="circle">
+                    href="#" coords="1132,196,100" shape="circle">
 
                     <area alt="On-Chain Reputation" 
                         title="On-Chain Reputation" 
                         data-content="A rating system that creates a sustainable environment to exchange information where the quality of data and our network improves over time." 
-                    href="#" coords="1887,1145,22" shape="circle">
+                    href="#" coords="1887,1145,100" shape="circle">
 
                     <area alt="Identity" 
                         title="Identity" 
                         data-content="Verified parties are issued committed values that allow participation and ensure a trusted network." 
-                    href="#" coords="617,1296,29" shape="circle">
+                    href="#" coords="617,1296,100" shape="circle">
 
                     <area alt="Data Monetization" 
                         title="Data Monetization" 
                         data-content="Maintain complete ownership of data and choose the criteria of consent for profitable data exchanges in our marketplace." 
-                    href="#" coords="245,1020,28" shape="circle">
+                    href="#" coords="245,1020,100" shape="circle">
 
                     <area alt="Privacy" 
                         title="Privacy" 
                         data-content="Data is encrypted and stored locally or on distributed servers around the world." 
-                    href="#" coords="1184,1114,27" shape="circle">
+                    href="#" coords="1184,1114,100" shape="circle">
 
                     <area alt="Secret Sharing" 
                         title="Secret Sharing" 
                         data-content="Secret Sharing (SMPC) allows a number of parties to jointly perform computations on private inputs, without releasing information other than that which has been agreed upon." 
-                    href="#" coords="1165,787,31" shape="circle">
+                    href="#" coords="1165,787,100" shape="circle">
 
                 </map>
                 <div id="result">
@@ -595,7 +595,7 @@
         $(function () {
             $('map').imageMapResize();
 
-            $("#host").find('area').click(function (e) {
+            $("#host").find('area').on("click tap", function (e) {
                 e.preventDefault();
                 var title = $(this).attr('title');
                 var content = $(this).attr('data-content');
