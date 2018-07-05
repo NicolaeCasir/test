@@ -33,9 +33,10 @@
             border: none;
             font-family: 'Courier New', Courier, monospace;
             outline: none!important;
-            box-shadow: none!important
+            box-shadow: none!important;
+            cursor: pointer;
         }
-      #result {
+      #result:not(.pop-left) {
         position: absolute;
         width: 360px;
         background-color: #fff;
@@ -43,6 +44,41 @@
         opacity: 0;
         transition: .4s;
         max-width: 100%
+      }
+      #result:not(.pop-left)::after {
+        display: block;
+        content: '';
+        position: absolute;
+        left: -26px;
+        top: 80px;
+        width: 0; 
+        height: 0; 
+        border-top: 1px solid transparent;
+        border-bottom: 23px solid transparent;
+        
+        border-right: 26px solid #fff;;
+      }
+      #result.pop-left {
+        position: absolute;
+        width: 360px;
+        background-color: #fff;
+        padding: 25px;
+        opacity: 0;
+        transition: .4s;
+        max-width: 100%
+      }
+      #result.pop-left::after {
+        display: block;
+        content: '';
+        position: absolute;
+        right: -26px!important;
+        top: 80px;
+        width: 0; 
+        height: 0; 
+        border-top: 1px solid transparent;
+        border-bottom: 23px solid transparent;
+        
+        border-left: 26px solid #fff;;
       }
       @media only screen and (max-width: 600px) {
         #result {
@@ -61,19 +97,7 @@
             position: absolute;
         }
       }
-      #result::after {
-        display: block;
-        content: '';
-        position: absolute;
-        left: -26px;
-        top: 80px;
-        width: 0; 
-        height: 0; 
-        border-top: 1px solid transparent;
-        border-bottom: 23px solid transparent;
-        
-        border-right: 26px solid #fff;;
-      }
+      
       #result h3 {
         text-transform: uppercase;
       }
@@ -258,7 +282,7 @@
                     <area alt="On-Chain Reputation" 
                         title="On-Chain Reputation" 
                         data-content="A rating system that creates a sustainable environment to exchange information where the quality of data and our network improves over time." 
-                    href="#" coords="1887,1145,100" shape="circle">
+                    href="#" coords="1887,1145,100" shape="circle" class="popOver-left">
 
                     <area alt="Identity" 
                         title="Identity" 
@@ -609,6 +633,14 @@
                         'left': x + 'px',
                         'top': y + 'px'
                     });
+                    if($(this).hasClass('popOver-left')) {
+                        $('#result').css({
+                            'left': x - 460 + 'px',
+                        });
+                        $('#result').addClass('pop-left');
+                    } else {
+                        $('#result').removeClass('pop-left');
+                    }
                 } else {
                     $('#result').css({
                         'opacity': '1'
@@ -619,7 +651,9 @@
                 $('#result').find('#desc').html('<p>' + content + '</p>');
                 $('#result').find('.btn-close').click(function () {
                     $('#result').css({
-                        'opacity': '0'
+                        'opacity': '0',
+                        'left': '0',
+                        'top': '0'
                     });
                 });
             });
