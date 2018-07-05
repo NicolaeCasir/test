@@ -14,10 +14,15 @@
         height: 600px;
         max-width: 100%!important;
         max-height: 100vw;
-        background-image: url('/bg_shape.png');
+        /* background-image: url('/bg_shape.png');
         background-position: center center;
         background-size: contain;
-        background-repeat: no-repeat;
+        background-repeat: no-repeat; */
+    }
+    #host area {
+        fill: #50bf97;
+        cursor: pointer;
+        outline: none
     }
 			canvas { width: 100%; }
         #result .btn-close {
@@ -239,55 +244,49 @@
                     </div>
                 </div>
             </div>
+            
             <div id="host">
-                <!-- <img src="/assets/shape.png" class="shape" alt="Shape"> -->
+                <img src="/assets/shape.png" class="shape" alt="Shape" usemap="#image-map">
+
+                <map name="image-map">
+
+                    <area alt="Encrypted Computing" 
+                        title="Encrypted Computing" 
+                        data-content="Coming soon ..." 
+                    href="#" coords="1132,196,25" shape="circle">
+
+                    <area alt="On-Chain Reputation" 
+                        title="On-Chain Reputation" 
+                        data-content="A rating system that creates a sustainable environment to exchange information where the quality of data and our network improves over time." 
+                    href="#" coords="1887,1145,22" shape="circle">
+
+                    <area alt="Identity" 
+                        title="Identity" 
+                        data-content="Verified parties are issued committed values that allow participation and ensure a trusted network." 
+                    href="#" coords="617,1296,29" shape="circle">
+
+                    <area alt="Data Monetization" 
+                        title="Data Monetization" 
+                        data-content="Maintain complete ownership of data and choose the criteria of consent for profitable data exchanges in our marketplace." 
+                    href="#" coords="245,1020,28" shape="circle">
+
+                    <area alt="Privacy" 
+                        title="Privacy" 
+                        data-content="Data is encrypted and stored locally or on distributed servers around the world." 
+                    href="#" coords="1184,1114,27" shape="circle">
+
+                    <area alt="Secret Sharing" 
+                        title="Secret Sharing" 
+                        data-content="Secret Sharing (SMPC) allows a number of parties to jointly perform computations on private inputs, without releasing information other than that which has been agreed upon." 
+                    href="#" coords="1165,787,31" shape="circle">
+
+                </map>
                 <div id="result">
-                    <button class="btn-close" onclick="closeMsg()">X</button>
+                    <button class="btn-close">X</button>
                     <h3 id="title"></h3>
                     <div id="desc"></div>
                 </div>
             </div>
-            <div class="message">
-                    <div class="title">Identity</div>
-                    <div class="content">
-                      <p>Verified parties are issued committed values that allow participation and ensure a trusted network.</p>
-                    </div>
-                  </div>
-            
-                  <div class="message">
-                    <div class="title">Privacy</div>
-                    <div class="content">
-                      <p>Data is encrypted and stored locally or on distributed servers around the world.</p>
-                    </div>
-                  </div>
-            
-                  <div class="message">
-                    <div class="title">Secret Sharing</div>
-                    <div class="content">
-                      <p>Secret Sharing (SMPC) allows a number of parties to jointly perform computations on private inputs, without releasing information other than that which has been agreed upon. </p>
-                    </div>
-                  </div>
-            
-                  <div class="message">
-                    <div class="title">Data Monetization</div>
-                    <div class="content">
-                      <p>Maintain complete ownership of data and choose the criteria of consent for profitable data exchanges in our marketplace.</p>
-                    </div>
-                  </div>
-            
-                  <div class="message">
-                    <div class="title">On-Chain Reputation</div>
-                    <div class="content">
-                      <p>A rating system that creates a sustainable environment to exchange information where the quality of data and our network improves over time.</p>
-                    </div>
-                  </div>
-            
-                  <div class="message">
-                    <div class="title">Encrypted Computing</div>
-                    <div class="content">
-                      <p>Coming soon ...</p>
-                    </div>
-                  </div>
             
             <!--
             <video autoplay muted loop playsinline id="shape-video">
@@ -590,362 +589,42 @@
         img.addEventListener('click', funcTwo)
     </script>
 
-
-
-    <script src="https://threejs.org/build/three.min.js"></script>
-    <script src="https://threejs.org/docs/scenes/js/geometry.js"></script>
-    <script src="https://threejs.org/examples/js/libs/dat.gui.min.js"></script>
-    <script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
-    <script src="https://threejs.org/examples/js/renderers/Projector.js"></script>
-
-<script>
-      var url = window.location.href;
-      if(!url.includes('#IcosahedronGeometry')) {
-        window.location.href += '#IcosahedronGeometry';
-      }
-      var mainEl = document.getElementById('host');
-
-      if(window.innerWidth > 768) {
-        var FOV = 50,
-        HEIGHT = mainEl.clientHeight;
-      } else {
-        var FOV = 40,
-        HEIGHT = mainEl.clientWidth;
-      }
-
-
-      var WIDTH = mainEl.clientWidth,
-          NEAR = 1,
-          FAR = 1000;
-
-  var gui = new dat.GUI();
-  var scene = new THREE.Scene();
-  var camera = new THREE.PerspectiveCamera(FOV, WIDTH / HEIGHT, NEAR, FAR);
-  camera.position.z = 30;
-
-  var renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
-  renderer.setPixelRatio( window.devicePixelRatio );
-  renderer.setSize( WIDTH, HEIGHT );
-  renderer.setClearColor( 0xffffff, 0 );
-  document.getElementById('host').appendChild(renderer.domElement);
-  
-
-  var orbit = new THREE.OrbitControls( camera, renderer.domElement );
-  orbit.enableZoom = false;
-
-  var lights = [];
-  lights[ 0 ] = new THREE.PointLight( 0xffffff, 0.5, 0 );
-  lights[ 1 ] = new THREE.PointLight( 0xffffff, 0.5, 0 );
-  lights[ 2 ] = new THREE.PointLight( 0xffffff, 0.5, 0 );
-
-  lights[ 0 ].position.set( 0, 200, 0 );
-  lights[ 1 ].position.set( 100, 200, 100 );
-  lights[ 2 ].position.set( - 100, - 200, - 100 );
-
-
-  scene.add( lights[ 0 ] );
-  scene.add( lights[ 1 ] );
-  scene.add( lights[ 2 ] );
-
-  var group = new THREE.Group();
-
-  var geometry = new THREE.BufferGeometry();
-  geometry.addAttribute( 'position', new THREE.Float32BufferAttribute( [], 3 ) );
-
-  var lineMaterial = new THREE.LineBasicMaterial( { color: 0xffffff, transparent: true, opacity: 0.3 } );
-  var meshMaterial = new THREE.MeshPhongMaterial( { color: 0x848eac, emissive: 0x69759b, flatShading: false, transparent: true, opacity: 0.5} );
-
-  var material = new THREE.MeshBasicMaterial({
-    color: 0x69759b,
-    wireframe: true
-  });
-
-  group.add( new THREE.LineSegments( geometry, lineMaterial ) );
-  group.add( new THREE.Mesh( geometry, meshMaterial ) );
-
-
-  geometry12 = new THREE.IcosahedronGeometry(10, 0);
-
-  var texts = document.getElementsByClassName('message');
-  var nodes = [];
-  var sprts = [];
-
-  for(var i = 0, l = texts.length; i < l; ++i){
-
-    var sprite = new THREE.TextureLoader().load( 'disc.png' );
-
-    
-
-    var dotGeometry = new THREE.Geometry();
-    dotGeometry.vertices.push(new THREE.Vector3( 0, 0, 0));
-    var dotMaterial = new THREE.PointsMaterial( { size: 1, transparent: true, alpha: true, color: 0xffffff, opacity: 1, sizeAttenuation: true, map: sprite } );
-    var dot = new THREE.Points( dotGeometry, dotMaterial );
-    dot.userData = {
-      title: texts[i].getElementsByClassName('title')[0].innerHTML, 
-      content: texts[i].getElementsByClassName('content')[0].innerHTML
-    };
-
-    nodes.push( dot );
-    scene.add(nodes[nodes.length - 1]);
-
-    var spritey = makeTextSprite( texts[i].getElementsByClassName('title')[0].innerHTML, 
-    { 
-        fontsize: 70, 
-        backgroundColor: {r:255, g:255, b:255, a:1} 
-    } );
-		//spritey.position = geometry12.vertices[i].clone().multiplyScalar(1.1);
-        spritey.userData = {
-            title: texts[i].getElementsByClassName('title')[0].innerHTML, 
-            content: texts[i].getElementsByClassName('content')[0].innerHTML
-        };
-        sprts.push(spritey);
-
-        scene.add( sprts[sprts.length - 1] );
-    
-  }
-
-  var tempVector = new THREE.Vector3();
-  var tempVector2 = new THREE.Vector3();
-  var tmpPos = new THREE.Vector3(camera.position.x, camera.position.y, camera.position.z);
-  function updateVertices(){
-      for(var i = 0, l = nodes.length; i < l; ++i){
-        
-        
-
-        tempVector.copy(geometry12.vertices[i]);
-        var tempPoz2 = new THREE.Vector3(tempVector.x, tempVector2.y, tempVector2.z + 0.5);
-        nodes[i].position.copy(group.localToWorld(tempVector));
-        nodes[i].lookAt(camera.position);
-        
-        //tempPoz.y = 10;
-        tempVector2.copy(geometry12.vertices[i]);
-        var tempPoz = new THREE.Vector3(tempVector2.x - 0.5, tempVector2.y + 0.7, tempVector2.z + 2);
-        sprts[i].position.copy(group.localToWorld(tempPoz));
-        sprts[i].lookAt(tempPoz);
-        
-        //console.log(tempPoz);
-
-
-
-      }
-      
-  }
-
- 
-
-  var raycaster = new THREE.Raycaster();
-  
-  var mouse = new THREE.Vector2();
-
-function onMouseMove( event ) {
-    var canvas = document.getElementsByTagName('canvas')[0];
-    
-mouse.x = ( event.offsetX / canvas.offsetWidth ) * 2 - 1;
-mouse.y = - ( event.offsetY / canvas.offsetHeight ) * 2 + 1;
-    
-  raycaster.setFromCamera( mouse, camera );
-
-  var intersects = raycaster.intersectObjects( scene.children );
-
-  var temp = '';
-
-  for ( var i = 0; i < intersects.length; i++ ) {
-
-    intersects[0].object.material.color.setHex(0x50bf97);
-  
-    setTimeout(function () {
-      intersects[0].object.material.color.setHex(0xffffff);
-    }, 1500)
-
-  }
-}
-
-function onMouseClick( event ) {
-  event.preventDefault();
-  translate = {
-    x: event.offsetX + 50,
-    y: event.offsetY - 80
-  };
-  var canvas = document.getElementsByTagName('canvas')[0];
-  mouse.x = ( event.offsetX / canvas.clientWidth ) * 2 - 1;
-  mouse.y = - ( event.offsetY / canvas.clientHeight ) * 2 + 1;
-  
-  raycaster.setFromCamera( mouse, camera );
-  var intersects = raycaster.intersectObjects( scene.children );
-
-  var temp = '';
-
-  if(intersects.length == 0) {
-    document.getElementById('result').style.opacity = 0;
-  }
-
-  for ( var i = 0; i < intersects.length; i++ ) {
-    if(intersects[0].object.type === 'Points') {
-        intersects[0].object.material.color.setHex(0x50bf97);
-        temp = intersects[0].object.userData;
-
-        var result = document.getElementById('result');
-        result.style.opacity = 1;
-        result.style.transform = 'translateX(' + translate.x + 'px) translateY(' + translate.y + 'px)';
-
-        document.getElementById('title').innerHTML  = temp.title
-        document.getElementById('desc').innerHTML  = temp.content
-    }
-    
-  }
-
-
-}
-
-function onTouch( event ) {
-  event.preventDefault();
-    var canvas = document.getElementsByTagName('canvas')[0];
-    var host = document.getElementById('host');
-    var diffY = event.changedTouches[0].pageY - host.offsetTop;
-
-  var canvas = document.getElementsByTagName('canvas')[0];
-  mouse.x = ( (event.touches[0].clientX - 20) / canvas.clientWidth ) * 2 - 1;
-  mouse.y = - ( diffY / canvas.clientHeight ) * 2 + 1;
-
-  raycaster.setFromCamera( mouse, camera );
-  var intersects = raycaster.intersectObjects( scene.children );
-
-  var temp = '';
-
-  if(intersects.length == 0) {
-    document.getElementById('result').style.opacity = 0;
-  }
-
-  for ( var i = 0; i < intersects.length; i++ ) {
-    if(intersects[0].object.type === 'Points') {
-        intersects[0].object.material.color.setHex(0x50bf97);
-        temp = intersects[0].object.userData;
-
-        var result = document.getElementById('result');
-        result.style.opacity = 1;
-
-        document.getElementById('title').innerHTML  = temp.title
-        document.getElementById('desc').innerHTML  = temp.content
-
-        setTimeout(function () {
-        intersects[0].object.material.color.setHex(0xffffff);
-        }, 2000);
-    }
-  }
-
-
-}
-document.getElementsByTagName("canvas")[0].addEventListener( 'mousemove', onMouseMove, false );
-document.getElementsByTagName("canvas")[0].addEventListener( 'mousedown', onMouseClick, false );
-document.getElementById("host").addEventListener("touchstart", onTouch, false);
-
-  var options = chooseFromHash( group );
-
-  scene.add( group );
-
-  var prevFog = false;
-
-  var render = function () {
-    updateVertices();
-    requestAnimationFrame( render );
-
-    if ( ! options.fixed && window.innerWidth > 768) {
-      group.rotation.x += 0.002;
-      group.rotation.y += 0.005;
-    } 
-
-    if (window.innerWidth < 768) {
-        group.rotation.x += 0.002;
-        group.rotation.y += 0.002; 
-    }
-
-
-    renderer.render( scene, camera );
-
-  };
-
-//   window.addEventListener( 'resize', function () {
-//     camera.aspect = window.innerWidth / window.innerHeight;
-//     camera.updateProjectionMatrix();
-//     renderer.setSize( window.innerWidth, window.innerHeight );
-//   }, false );
-
- document.getElementById('host').addEventListener( 'mouseenter', function () {
-    options.fixed = true
-    }, false );
-
-  document.getElementById('host').addEventListener( 'mouseleave', function () {
-    options.fixed = false
-    document.getElementById('result').style.opacity = 0;
-  }, false );
-
-  render();
-  function closeMsg () {
-    document.getElementById('result').style.opacity = 0;
-  }
-
-  function makeTextSprite( message, parameters )
-{
-	if ( parameters === undefined ) parameters = {};
-	
-	var fontface = parameters.hasOwnProperty("fontface") ? 
-		parameters["fontface"] : "AcuminPro-Light";
-	
-	var fontsize = parameters.hasOwnProperty("fontsize") ? 
-		parameters["fontsize"] : 14;
-	
-	var borderThickness = parameters.hasOwnProperty("borderThickness") ? 
-		parameters["borderThickness"] : 0;
-	
-	var borderColor = parameters.hasOwnProperty("borderColor") ?
-		parameters["borderColor"] : { r:255, g:255, b:255, a:0 };
-	
-	var backgroundColor = parameters.hasOwnProperty("backgroundColor") ?
-		parameters["backgroundColor"] : { r:255, g:255, b:255, a:0 };
-
-	//var spriteAlignment = parameters.hasOwnProperty("alignment") ?
-	//	parameters["alignment"] : THREE.SpriteAlignment.topLeft;
-
-	//var spriteAlignment = THREE.SpriteAlignment.topLeft;
-		
-
-    var canvas = document.createElement('canvas');
-    var context = canvas.getContext('2d');
-    //context.font = fontsize + "px " + fontface;
-    context.font = "32px " + fontface;
-    context.textAlign = "start";
-
-    context.shadowBlur = 12;
-    context.shadowOffsetX = 0;
-    context.shadowOffsetX = 0;
-    context.shadowColor = "rgba(255, 255, 255, 0.5)";//"rgba(80, 191, 151, .5)";
-
-	// get size data (height depends only on font size)
-    var metrics = context.measureText( message );
-
-	//context.lineWidth = metrics.width;// borderThickness;
-	// 1.4 is extra height factor for text below baseline: g,j,p,q.
-	
-	// text color
-	context.fillStyle = "rgba(255, 255, 255, 1.0)";
-    //context.fillText( message, borderThickness, fontsize + borderThickness);
-    
-    context.fillText( message, 10, 100);
-	// canvas contents will be used for a texture
-    var texture = new THREE.Texture(canvas) 
-    texture.minFilter = THREE.LinearFilter
-	texture.needsUpdate = true;
-
-	var spriteMaterial = new THREE.SpriteMaterial( 
-		{ map: texture, } );
-	var sprite = new THREE.Sprite( spriteMaterial );
-	sprite.scale.set(5,2.5,0);
-	return sprite;	
-}
-		</script>
-
-
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="assets/imageMapResizer.min.js"></script>
+    <script>
+        $(function () {
+            $('map').imageMapResize();
+
+            $("#host").find('area').click(function (e) {
+                e.preventDefault();
+                var title = $(this).attr('title');
+                var content = $(this).attr('data-content');
+                console.log(title + '  -  ' + content);
+                
+                var x = e.offsetX + 40;
+                var y = e.offsetY - 70;
+                if(window.innerWidth > 768) {
+                    $('#result').css({
+                        'opacity': '1',
+                        'left': x + 'px',
+                        'top': y + 'px'
+                    });
+                } else {
+                    $('#result').css({
+                        'opacity': '1'
+                    });
+                }
+                
+                $('#result').find('h3').html(title);
+                $('#result').find('#desc').html('<p>' + content + '</p>');
+                $('#result').find('.btn-close').click(function () {
+                    $('#result').css({
+                        'opacity': '0'
+                    });
+                });
+            });
+        })
+    </script>
 
 </body>
 </html>
