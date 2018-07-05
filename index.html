@@ -42,8 +42,9 @@
         background-color: #fff;
         padding: 25px;
         opacity: 0;
-        transition: .4s;
-        max-width: 100%
+        transition: .2s;
+        max-width: 100%;
+        left: -200px;
       }
       #result:not(.pop-left)::after {
         display: block;
@@ -64,8 +65,9 @@
         background-color: #fff;
         padding: 25px;
         opacity: 0;
-        transition: .4s;
-        max-width: 100%
+        transition: .2s;
+        max-width: 100%;
+        left: -200px;
       }
       #result.pop-left::after {
         display: block;
@@ -86,10 +88,11 @@
             background-color: #fff;
             padding: 20px;
             opacity: 0;
-            transition: .4s;
+            transition: .2s;
             top: 0;
             left: 0;
-            width: 100%
+            width: 100%;
+        left: -200px;
         }
         #result::after {
             display: none!important;
@@ -623,7 +626,6 @@
                 e.preventDefault();
                 var title = $(this).attr('title');
                 var content = $(this).attr('data-content');
-                console.log(title + '  -  ' + content);
                 
                 var x = e.offsetX + 40;
                 var y = e.offsetY - 70;
@@ -643,16 +645,21 @@
                     }
                 } else {
                     $('#result').css({
-                        'opacity': '1'
+                        'opacity': '1',
+                        'top': '0',
+                        'left': '0'
                     });
                 }
                 
                 $('#result').find('h3').html(title);
                 $('#result').find('#desc').html('<p>' + content + '</p>');
                 $('#result').find('.btn-close').click(function () {
+                    $('#result').find('h3').html('');
+                    $('#result').find('#desc').html('');
+
                     $('#result').css({
                         'opacity': '0',
-                        'left': '0',
+                        'left': '-400px',
                         'top': '0'
                     });
                 });
